@@ -8,13 +8,7 @@ class Question:
     def __init__(self):
         pass
 
-    def generate_question(self):
-
-        # def myFunc(x):
-        #     if x['not_played_yet'] == True:
-        #         return True
-        #     else:
-        #         return False
+    def generate_question(self, player):
 
         birdlist = birddetails.bird_options
 
@@ -60,53 +54,14 @@ class Question:
             user_answer = input("\tYour answer:\t")
             if user_answer == str(current_choices.index(current_bird['name']) + 1):
                 print("yay")
+                player.score += 10
+                print(player.name, player.score)
             else:
                 print("sorry")
 
-
-"""
-        while len(unplayed_birds) > 0:
-
-            current_choices = []
-
-            other_choices = list(map(populate_list, birdlist))
-
-            current_bird = birdlist[random.randint(
-                0, len(birdlist)-1)]
-            current_choices.append(current_bird['name'])
-
-            other_choices.pop(other_choices.index(current_bird['name']))
-
-            # filtered_birdlist[filtered_birdlist.index(current_bird)][
-            #     'not_played_yet'] = False
-
-            unplayed_birds.pop(unplayed_birds.index(current_bird['name']))
-
-            choice2 = birdlist[random.randint(
-                0, len(birdlist)-1)]
-
-            other_choices.pop(other_choices.index(choice2['name']))
-            current_choices.append(choice2['name'])
-
-            choice3 = birdlist[random.randint(
-                0, len(birdlist)-1)]
-
-            other_choices.pop(other_choices.index(choice3['name']))
-            current_choices.append(choice3['name'])
-
-            random.shuffle(current_choices)
-
-            print(f"\n\n\tWhich bird do you hear?")
-            print(f"\t\t1. {current_choices[0]}")
-            print(f"\t\t2. {current_choices[1]}")
-            print(f"\t\t3. {current_choices[2]}\n\n")
-
-            playsound(current_bird['sound_location'])
-
-            user_answer = input("\tYour answer:\t")
-            if user_answer == str(current_choices.index(current_bird['name']) + 1):
-                print("yay")
-            else:
-                print("sorry")
-
-"""
+        print(f"Great Job, {player.name}!  Your score is: {player.score}")
+        play_again = input("Would you like to play again (y/n)?\t")
+        if play_again == "y":
+            return True
+        if play_again == "n":
+            return False
