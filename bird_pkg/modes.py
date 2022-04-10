@@ -1,5 +1,6 @@
-from bird_pkg import birddetails
+from bird_pkg import birddetails, players
 from playsound import playsound
+
 
 import random
 
@@ -9,7 +10,9 @@ def show_mode_menu():
     print("\t\t ---------------------------------")
     print("\t\t|  1. Play       |  2. Study      |")
     print("\t\t ---------------------------------")
-    print("\t\t|  3. Scoreboard |  4. Exit       |")
+    print("\t\t|  3. Scoreboard |  4. Logout     |")
+    print("\t\t ---------------------------------\n")
+    print("\t\t|            5. Exit              |")
     print("\t\t ---------------------------------\n")
 
 
@@ -28,6 +31,10 @@ def learn_mode():
 
 def show_scores():
     print("show scores")
+
+
+def logout():
+    return True
 
 
 def exit_game():

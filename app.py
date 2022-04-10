@@ -12,13 +12,15 @@ def exit_game():
 
 
 while True:
+    restart = False
+    current_player = None
     print("\n\n\t      Hello!  Welcome to the Bird Sounds Game!")
     players.show_user_menu()
 
     while True:
         user_sel = int(input("\tPlease make a selection:\t"))
         if user_sel == 1:
-            user = players.create_user()
+            current_player = players.create_user()
             break
         elif user_sel == 2:
             players.login()
@@ -39,18 +41,24 @@ while True:
         user_sel = int(input("\tPlease make a selection:\t"))
         if user_sel == 1:
             new_question = questions.Question()
-            game_time = new_question.generate_question(user)
+            game_time = new_question.generate_question(current_player)
             break
         elif user_sel == 2:
             modes.learn_mode()
             break
         elif user_sel == 3:
-            modes.show_scores()
+            players.show_scores()
             break
         elif user_sel == 4:
+            restart = True
+            break
+        elif user_sel == 5:
             exit_game()
             break
         else:
             print("Invalid Selection.  Please try again")
     if game_time == False:
         break
+    if restart == True:
+        print("restart is true")
+        continue

@@ -1,3 +1,6 @@
+player_list = []
+
+
 def show_user_menu():
     print("\n\t\t           User Menu")
     print("\t\t ---------------------------------")
@@ -21,6 +24,7 @@ def create_user():
     user = Player(user_name, user_password)
     print(f"\nWelcome, {user.name}!")
     print("You are logged in.")
+    player_list.append(user)
     return user
 
 
@@ -28,8 +32,28 @@ def login():
     print("login")
 
 
+def score_sort_key(e):
+    return e["score"]
+
+
 def show_scores():
-    print("show scores")
+    player_dict_list = []
+    for player in range(len(player_list)):
+        player_dict = {}
+        player_dict["name"] = list(player_list)[player].name
+        player_dict["score"] = list(
+            player_list)[player].score
+        player_dict_list.append(player_dict)
+    player_dict_list.sort(reverse=True, key=score_sort_key)
+
+    print("\n\t\t\tScoreBoard\n")
+    print("\t\tNAME\t\t\tSCORE")
+    print("\t______________________________________________\n")
+    for player in range(len(player_dict_list)):
+        print(
+            f"\t\t{player_dict_list[player]['name']}\t\t\t{player_dict_list[player]['score']}\n")
+    print("\t______________________________________________\n")
+    input("Press any key to continue.\t")
 
 
 def exit_game():
