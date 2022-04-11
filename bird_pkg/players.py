@@ -1,4 +1,28 @@
 player_list = []
+index_of_user = 0
+
+
+def search_playerlist(user):
+    for player in range(len(player_list)):
+        if user == list(player_list)[player].name:
+            return list(player_list)[player]
+        else:
+            print("Sorry: username not found.")
+            return False
+
+    # The following is NOT how to do this, but I left it in to show the twisted turns that I took trying to get to what was actually a very simple solution:
+    # player_dict = {}
+    # player_index_list = []
+    # for player in range(len(player_list)):
+    #     player_dict[list(player_list)[player].name] = list(
+    #         player_list)[player].password
+    #     player_index_list.append(list(player_list)[player].name)
+    # if user in player_dict:
+    #     index_of_user = player_index_list.index(user)
+    #     return index_of_user
+    # else:
+    #     print("Sorry: username not found.")
+    #     return False
 
 
 def show_user_menu():
@@ -29,7 +53,14 @@ def create_user():
 
 
 def login():
-    print("login")
+    print("\nLogin")
+    user_name = input("Username:\t")
+    user = search_playerlist(user_name)
+    user_password = input("Password:\t")
+    if user_password == user.password:
+        return user
+    else:
+        print("You have entered an incorrect password.")
 
 
 def score_sort_key(e):

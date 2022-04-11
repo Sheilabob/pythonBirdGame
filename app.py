@@ -23,7 +23,7 @@ while True:
             current_player = players.create_user()
             break
         elif user_sel == 2:
-            players.login()
+            current_player = players.login()
             break
         elif user_sel == 3:
             players.show_scores()
