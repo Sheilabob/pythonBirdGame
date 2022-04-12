@@ -19,6 +19,14 @@ class Question:
         unplayed_birds = list(map(populate_list, birdlist))
 
         while len(unplayed_birds) > 0:
+            quiz = input(Fore.MAGENTA + Style.BRIGHT +
+                         "\nNext question (y/n)?\t")
+            if quiz == 'n':
+                return True
+            elif quiz != 'y':
+                print(Fore.RED + Style.BRIGHT +
+                      "\nSorry, that wasn't a valid entry.  Try again")
+                continue
 
             current_choices = []
 
@@ -58,18 +66,18 @@ class Question:
             user_answer = input(Fore.CYAN + Style.BRIGHT + "\tYour answer:\t")
             if user_answer == str(current_choices.index(current_bird['name']) + 1):
                 print(Fore.GREEN + Style.BRIGHT +
-                      "Great job!  You earned 10 points!")
+                      "\nGreat job!  You earned 10 points!")
                 player.score += 10
                 print(Fore.GREEN + Style.BRIGHT +
-                      f"Your score is now: {player.score}")
+                      f"\tYour score is now: {player.score}")
             else:
                 print(Fore.RED + Style.BRIGHT +
-                      "Sorry, that was the wrong answer. \n\tThe correct answer was:", Fore.CYAN + Style.BRIGHT + current_bird['name'])
+                      "\nSorry, that was the wrong answer. \n\tThe correct answer was:", Fore.CYAN + Style.BRIGHT + current_bird['name'])
 
         print(Fore.GREEN + Style.BRIGHT +
-              f"Great Job, {player.name}!  Your score is currently: {player.score}")
+              f"\nGreat Job, {player.name}!  Your score is currently: {player.score}")
         play_again = input(Fore.CYAN + Style.BRIGHT +
-                           "Would you like to play again (y/n)?\t")
+                           "\nWould you like to play again (y/n)?\t")
         if play_again == "y":
             return True
         if play_again == "n":
@@ -84,7 +92,7 @@ class Question:
         unplayed_birds = list(map(populate_list, birdlist))
         while len(unplayed_birds) > 0:
             learn = input(Fore.MAGENTA + Style.BRIGHT +
-                          "\nWould you like to learn about a bird and its sound (y/n)?")
+                          "\nWould you like to learn about a bird and its sound (y/n)?\t")
             if learn == 'y':
                 current_bird = unplayed_birds[random.randint(
                     0, len(unplayed_birds)-1)]
@@ -101,12 +109,13 @@ class Question:
                     label += 1
 
                 playsound(current_bird['sound_location'])
-                input(Fore.CYAN + Style.BRIGHT + "Press enter to continue.")
+                input(Fore.CYAN + Style.BRIGHT +
+                      "\nPress enter to continue.\t")
             elif learn == 'n':
                 return True
             else:
                 print(Fore.RED + Style.BRIGHT +
-                      "Sorry, that wasn't a valid entry.  Try again")
+                      "\nSorry, that wasn't a valid entry.  Try again")
         if return_to_menu == True:
             return True
         input(Fore.CYAN + Style.BRIGHT +
