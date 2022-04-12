@@ -65,3 +65,37 @@ class Question:
             return True
         if play_again == "n":
             return False
+
+    def teach_me_something(self):
+        return_to_menu = False
+        birdlist = birddetails.bird_options
+
+        def populate_list(entry):
+            return entry
+        unplayed_birds = list(map(populate_list, birdlist))
+        while len(unplayed_birds) > 0:
+            learn = input(
+                "\nWould you like to learn about a bird and its sound (y/n)?")
+            if learn == 'y':
+                current_bird = unplayed_birds[random.randint(
+                    0, len(unplayed_birds)-1)]
+                unplayed_birds.remove(current_bird)
+
+                print(f"\n\tYou are hearing a {current_bird['name']}.")
+                print(f"\n\t\tSome facts about the {current_bird['name']}:")
+                label = 1
+                for info in range(0, len(current_bird['hints'])):
+                    print(
+                        f"\t\t\t{label}.\t{current_bird['hints'][info]}")
+                    label += 1
+
+                playsound(current_bird['sound_location'])
+                input("Press enter to continue.")
+            elif learn == 'n':
+                return True
+            else:
+                print("Sorry, that wasn't a valid entry.  Try again")
+        if return_to_menu == True:
+            return True
+        input("\nThat's all the birds for now.  Press enter to return to the menu.\n")
+        return True

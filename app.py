@@ -1,8 +1,7 @@
-from bird_pkg import birddetails, questions, players, modes
-from playsound import playsound
-import random
+from bird_pkg import questions, players, modes
 
 game_time = True
+still_playing = True
 
 
 def exit_game():
@@ -27,7 +26,7 @@ while True:
             break
         elif user_sel == 3:
             players.show_scores()
-            break
+            continue
         elif user_sel == 4:
             exit_game()
             break
@@ -35,21 +34,27 @@ while True:
             print("Invalid Selection.  Please try again")
     if game_time == False:
         break
-    modes.show_mode_menu()
 
     while True:
+        modes.show_mode_menu()
         user_sel = int(input("\tPlease make a selection:\t"))
         if user_sel == 1:
             new_question = questions.Question()
-            game_time = new_question.generate_question(current_player)
+            still_playing = new_question.generate_question(current_player)
+            if still_playing == True:
+                continue
             break
         elif user_sel == 2:
-            modes.learn_mode()
+            new_fact = questions.Question()
+            still_playing = new_fact.teach_me_something()
+            if still_playing == True:
+                continue
             break
         elif user_sel == 3:
             players.show_scores()
-            break
+            continue
         elif user_sel == 4:
+            current_player = None
             restart = True
             break
         elif user_sel == 5:
@@ -60,5 +65,5 @@ while True:
     if game_time == False:
         break
     if restart == True:
-        print("restart is true")
+        print("Logging out.")
         continue
