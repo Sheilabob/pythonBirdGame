@@ -116,8 +116,8 @@ def login():
               "\nYou have entered an incorrect password.")
 
 
-def score_sort_key(e):
-    return e["score"]
+# def score_sort_key(e):
+#     return e["score"]
 
 
 def show_scores():
